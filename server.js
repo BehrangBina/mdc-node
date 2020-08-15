@@ -2,6 +2,10 @@ const express = require ('express');
 const app = express();
 const mongoose = require ('mongoose');
 const userRoute = require ('./router/user_router');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const morgan =require('morgan')
+
 // Express App
 require ('dotenv').config();
 
@@ -11,11 +15,15 @@ mongoose.connect
     (db,    { useNewUrlParser: true,  useUnifiedTopology: true})
     .then(()=>{console.log(`Database Started at: ${db}`)})
 
+
+// Middlewares
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(cookieParser())
+
+
 //Routers - MiddleWare
 app.use('/api',userRoute)
-
-//
-
 
 app.get('/',(req,res)=>{
         res.send('Hello ...');
