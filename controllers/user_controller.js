@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken'); //to generate sign token
 const expressJwt = require('express-jwt'); //authorization check
 const user = require('../models/user');
 const fs = require('fs');
-const { response } = require('express');
+
 exports.signup = (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
@@ -54,4 +54,9 @@ exports.signin = (req, res) => {
         return res.json({ token, user: { _id, name, email, role } });
 
     })
+}
+
+exports.signout = (req,res) =>{
+    res.clearCookie('t');
+    res.json({message:'Signout Sucess'})
 }
