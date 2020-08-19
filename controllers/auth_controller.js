@@ -3,7 +3,6 @@ const { dbErrorHandler } = require('../helpers/db_error_handler');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken'); //to generate sign token
 const expressJwt = require('express-jwt'); //authorization check
-const user = require('../models/user');
 const fs = require('fs');
 
 exports.signup = (req, res) => {
@@ -60,3 +59,9 @@ exports.signout = (req,res) =>{
     res.clearCookie('t');
     res.json({message:'Signout Sucess'})
 }
+
+exports.requireSignin= expressJwt({
+    secret:pk,
+    userProperty:"auth",
+    algorithms: ["HS256"],
+})

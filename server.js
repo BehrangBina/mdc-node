@@ -1,7 +1,7 @@
 const express = require ('express');
 const app = express();
 const mongoose = require ('mongoose');
-const userRoute = require ('./router/user_router');
+const userRoute = require ('./router/auth_router');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const morgan =require('morgan')
