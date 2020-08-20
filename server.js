@@ -1,10 +1,11 @@
 const express = require ('express');
 const app = express();
 const mongoose = require ('mongoose');
-const userRoute = require ('./router/auth_router');
+const userRoute = require ('./router/user_router');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const morgan =require('morgan')
+const AuthRoute = require('./router/auth_router')
 
 // Express App
 require ('dotenv').config();
@@ -20,10 +21,11 @@ mongoose.connect
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(cookieParser())
-
+ 
 
 //Routers - MiddleWare
 app.use('/api',userRoute)
+app.use('/api',AuthRoute)
 
 app.get('/',(req,res)=>{
         res.send('Hello ...');

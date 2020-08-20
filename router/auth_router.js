@@ -6,8 +6,7 @@ const {signup,signin,signout,requireSignin} = require('../controllers/auth_contr
 router.post('/signup',userSignupValidation,signup)
 router.post('/signin',signin)
 router.get('/signout',signout)
-router.get("/hello",requireSignin,(req,res)=>{
-    res.send("Hello Send");
-})
+router.get("/hello",requireSignin,(req,res)=>{    res.send("Hello Send");})
+
 
 module.exports = router;
